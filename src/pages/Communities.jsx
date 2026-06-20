@@ -1,7 +1,22 @@
+import { useState } from 'react'
 import CommunityCard from '../components/CommunityCard'
 import { communityData } from '../data/communityData'
 
 function Communities() {
+  // Search text state: controlled input value
+  const [searchText, setSearchText] = useState('')
+
+  // Filtering logic: match by name or region
+  // Convert both sides to lowercase for case-insensitive search
+  const visibleCommunities = communityData.filter((community) => {
+    const q = searchText.trim().toLowerCase()
+    if (q === '') return true
+    return (
+      community.name.toLowerCase().includes(q) ||
+      community.region.toLowerCase().includes(q)
+    )
+  })
+
   return (
     <section className="page-section">
       <div className="page-heading">
@@ -13,8 +28,19 @@ function Communities() {
         </p>
       </div>
 
+      {/* Simple search input - updates `searchText` state */}
+      <div style={{ marginBottom: 18 }}>
+        <input
+          aria-label="Search communities"
+          placeholder="Search by name or region (e.g. Stellar, Global)"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       <div className="card-grid">
-        {communityData.map((community) => (
+        {visibleCommunities.map((community) => (
           <CommunityCard key={community.id} community={community} />
         ))}
       </div>

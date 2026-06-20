@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-function Navbar() {
+function Navbar({ theme, setTheme }) {
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/dashboard', label: 'Dashboard' },
@@ -27,6 +27,17 @@ function Navbar() {
             {link.label}
           </NavLink>
         ))}
+
+        {/* Theme toggle: uses setTheme from App to change theme state */}
+        <button
+          type="button"
+          className="secondary-button"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          aria-label="Toggle theme"
+          title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}
+        >
+          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+        </button>
       </nav>
     </header>
   )

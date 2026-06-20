@@ -50,11 +50,19 @@ const eventList = [
 ]
 
 function Events() {
-  const [showOnlyLive, setShowOnlyLive] = useState(false)
+  // selectedFilter holds the current events filter: All | Upcoming | Completed
+  const [selectedFilter, setSelectedFilter] = useState('All')
 
-  const visibleEvents = showOnlyLive
-    ? eventList.filter((event) => event.status === 'Live')
-    : eventList
+  // Filtering before rendering EventCard components
+  // This keeps rendering simple and uses array.filter + conditional checks
+  const visibleEvents = eventList.filter((event) => {
+    if (selectedFilter === 'All') return true
+    if (selectedFilter === 'Upcoming') return event.status === 'Upcoming'
+    if (selectedFilter === 'Completed') return event.status === 'Completed'
+    return true
+  })
+
+  const filterOptions = ['All', 'Upcoming', 'Completed']
 
   return (
     <section className="page-section">
@@ -68,13 +76,20 @@ function Events() {
           </p>
         </div>
 
-        <button
-          type="button"
-          className="secondary-button"
-          onClick={() => setShowOnlyLive((currentValue) => !currentValue)}
-        >
-          {showOnlyLive ? 'Show all events' : 'Show live only'}
-        </button>
+        <div style={{ display: 'flex', gap: 8 }} className="filter-group">
+          {filterOptions.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              className={
+                'secondary-button' + (selectedFilter === opt ? ' nav-link-active' : '')
+              }
+              onClick={() => setSelectedFilter(opt)}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="card-grid">

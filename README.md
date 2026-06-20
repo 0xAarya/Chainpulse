@@ -61,6 +61,20 @@ This project is built to show a mixed profile:
 - Conditional rendering for loading text and event status
 - Rendering lists with `array.map()`
 
+## New Features
+
+- ✓ Dark mode using React state (`useState`) and `localStorage` persistence
+- ✓ Community search functionality using `filter()` and `includes()`
+- ✓ Event filtering system (All / Upcoming / Completed)
+
+### Short explanation of React concepts used for these features
+
+- **`useState`**: stores the current theme, search text, and selected event filter so the UI updates when these values change.
+- **`useEffect`**: used to load the saved theme from `localStorage` when the app starts and to save the theme whenever it changes.
+- **`filter()` + `includes()`**: used to show only matching communities or events based on user input or the selected filter before rendering with `map()`.
+
+These additions are intentionally simple and beginner-friendly so you can explain the code line-by-line in an interview.
+
 ## How To Run
 
 Install dependencies:
