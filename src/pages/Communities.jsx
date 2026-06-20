@@ -3,11 +3,8 @@ import CommunityCard from '../components/CommunityCard'
 import { communityData } from '../data/communityData'
 
 function Communities() {
-  // Search text state: controlled input value
   const [searchText, setSearchText] = useState('')
 
-  // Filtering logic: match by name or region
-  // Convert both sides to lowercase for case-insensitive search
   const visibleCommunities = communityData.filter((community) => {
     const q = searchText.trim().toLowerCase()
     if (q === '') return true
@@ -28,7 +25,6 @@ function Communities() {
         </p>
       </div>
 
-      {/* Simple search input - updates `searchText` state */}
       <div style={{ marginBottom: 18 }}>
         <input
           aria-label="Search communities"

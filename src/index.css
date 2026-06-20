@@ -21,7 +21,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark theme overrides: toggled by adding `dark` class on the body */
 body.dark {
   --background: #07121a;
   --surface: #0f1b24;
@@ -112,7 +111,6 @@ a {
   background: var(--surface);
 }
 
-/* Small input styling for search boxes */
 .search-input {
   padding: 8px 12px;
   border-radius: 8px;

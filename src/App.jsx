@@ -7,17 +7,13 @@ import Events from './pages/Events'
 import Home from './pages/Home'
 
 function App() {
-  // Theme state: 'light' or 'dark'
-  // useState stores the current theme in React state
   const [theme, setTheme] = useState('light')
 
-  // Load saved theme when the app starts
   useEffect(() => {
     const saved = window.localStorage.getItem('theme')
     if (saved) setTheme(saved)
   }, [])
 
-  // Apply theme to document body and persist when it changes
   useEffect(() => {
     document.body.classList.toggle('dark', theme === 'dark')
     window.localStorage.setItem('theme', theme)
@@ -26,7 +22,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
-        {/* Pass theme and setter down so Navbar can toggle it */}
         <Navbar theme={theme} setTheme={setTheme} />
 
         <main>

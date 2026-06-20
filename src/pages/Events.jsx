@@ -50,11 +50,8 @@ const eventList = [
 ]
 
 function Events() {
-  // selectedFilter holds the current events filter: All | Upcoming | Completed
   const [selectedFilter, setSelectedFilter] = useState('All')
 
-  // Filtering before rendering EventCard components
-  // This keeps rendering simple and uses array.filter + conditional checks
   const visibleEvents = eventList.filter((event) => {
     if (selectedFilter === 'All') return true
     if (selectedFilter === 'Upcoming') return event.status === 'Upcoming'

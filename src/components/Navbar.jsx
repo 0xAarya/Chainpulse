@@ -28,7 +28,6 @@ function Navbar({ theme, setTheme }) {
           </NavLink>
         ))}
 
-        {/* Theme toggle: uses setTheme from App to change theme state */}
         <button
           type="button"
           className="secondary-button"
